@@ -19,6 +19,11 @@ export class DataService {
   constructor() {
 
   }
+
+  updateDesc(value: string) {
+    console.log(value)
+    this.data.description = value;
+  }
 }
 
 interface IRecord {

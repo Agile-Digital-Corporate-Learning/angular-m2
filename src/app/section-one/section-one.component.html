@@ -3,15 +3,15 @@
 
   <mat-form-field class="example-form-field">
     <mat-label>Clearable input</mat-label>
-    <input matInput type="text" [(ngModel)]="name">
-    @if (name) {
-      <button matSuffix mat-icon-button aria-label="Clear" (click)="name=''">
+    <input matInput type="text" [(ngModel)]="desc" (ngModelChange)="onNameChange($event)">
+    @if (desc) {
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="desc=''">
         <mat-icon>close</mat-icon>
       </button>
     }
   </mat-form-field>
 
-  <p>{{name}}</p>
+  <p>{{desc}}</p>
 
   <pre>{{ JSON.stringify(dataService.dataVM, null, 4) }}</pre>
 </section>

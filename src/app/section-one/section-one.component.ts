@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
@@ -20,11 +20,20 @@ import {DataService} from "../data.service";
   templateUrl: './section-one.component.html',
   styleUrl: './section-one.component.css'
 })
-export class SectionOneComponent {
+export class SectionOneComponent implements OnInit {
+
+  desc: string = "";
 
   constructor(public dataService: DataService) {
   }
 
-  name: string = "cccc";
+  ngOnInit(): void {
+    this.desc = this.dataService.dataVM.description
+  }
+
   protected readonly JSON = JSON;
+
+  onNameChange($event: any) {
+    this.dataService.updateDesc($event);
+  }
 }
