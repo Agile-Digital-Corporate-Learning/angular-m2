@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import {Observable, map, firstValueFrom} from 'rxjs';
 import { environment } from '../environments/environment';
 
 // 定义接口类型来描述响应结构
@@ -34,7 +34,7 @@ export class SyncHttpService {
   constructor(private http: HttpClient) { }
 
   // 定义方法并只返回 content 字段
-  generateContent(): Observable<string> {
+  async generateContent(): Promise<string> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.apiKey}`,
       'Content-Type': 'application/json'
@@ -56,8 +56,7 @@ export class SyncHttpService {
     };
 
     // 使用 map 操作符从响应中提取 content 字段
-    return this.http.post<TextGenerationResponse>(this.apiUrl, body, { headers }).pipe(
-      map(response => response.output.choices[0].message.content)
-    );
+    const response = await firstValueFrom(this.http.post<TextGenerationResponse>(this.apiUrl, body, { headers }))
+    return response.output.choices[0].message.content
   }
 }

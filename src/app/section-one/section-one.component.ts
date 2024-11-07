@@ -29,11 +29,9 @@ export class SectionOneComponent implements OnInit {
               private syncHttpService: SyncHttpService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit()   {
     this.desc = this.dataService.dataVM.description
-    this.syncHttpService.generateContent().subscribe(a=> {
-      console.log(a)
-    });
+    const response = await this.syncHttpService.generateContent()
   }
 
   protected readonly JSON = JSON;
