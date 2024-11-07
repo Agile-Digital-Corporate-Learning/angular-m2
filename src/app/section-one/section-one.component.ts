@@ -5,6 +5,7 @@ import {MatInput} from "@angular/material/input";
 import {MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {DataService} from "../../services/data.service";
+import {SyncHttpService} from "../../services/sync-http.service";
 
 @Component({
   selector: 'app-section-one',
@@ -15,7 +16,7 @@ import {DataService} from "../../services/data.service";
     MatInput,
     MatIconButton,
     MatIcon,
-    MatLabel,
+    MatLabel
   ],
   templateUrl: './section-one.component.html',
   styleUrl: './section-one.component.css'
@@ -24,11 +25,15 @@ export class SectionOneComponent implements OnInit {
 
   desc: string = "";
 
-  constructor(public dataService: DataService) {
-  }
+  constructor(public dataService: DataService,
+              private syncHttpService: SyncHttpService
+  ) {}
 
   ngOnInit(): void {
     this.desc = this.dataService.dataVM.description
+    this.syncHttpService.generateContent().subscribe(a=> {
+      console.log(a)
+    });
   }
 
   protected readonly JSON = JSON;
