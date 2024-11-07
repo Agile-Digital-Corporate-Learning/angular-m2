@@ -16,9 +16,7 @@ export class DataService {
     return this.data;
   }
 
-  constructor() {
-
-  }
+  constructor() {}
 
   updateDesc(value: string) {
     console.log(value)

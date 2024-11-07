@@ -4,7 +4,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
-import {DataService} from "../data.service";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-section-one',
