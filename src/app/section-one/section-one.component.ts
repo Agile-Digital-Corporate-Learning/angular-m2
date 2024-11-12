@@ -25,13 +25,10 @@ export class SectionOneComponent implements OnInit {
 
   desc: string = "";
 
-  constructor(public dataService: DataService,
-              private syncHttpService: SyncHttpService
-  ) {}
+  constructor(public dataService: DataService) {}
 
   async ngOnInit()   {
     this.desc = this.dataService.dataVM.description
-    const response = await this.syncHttpService.generateContent()
   }
 
   protected readonly JSON = JSON;
