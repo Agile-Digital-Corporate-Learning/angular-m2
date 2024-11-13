@@ -1,1 +1,6 @@
-<p>section-three works!</p>
+<form [formGroup]="form" #formRef="ngForm" (ngSubmit)="handleSubmit()">
+  <app-custom-input formControlName="count" />
+  <input type="text" formControlName="username"/>
+  <input type="submit" value="submit" />
+</form>
+
